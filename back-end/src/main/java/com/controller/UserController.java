@@ -14,6 +14,7 @@ import org.w3c.dom.html.HTMLParagraphElement;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.io.File;
 
 @Controller    // This means that this class is a Controller
 @CrossOrigin(origins = "http://localhost:3000")
@@ -21,6 +22,7 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    String uploads = System.getProperty("user.dir")+"\\src\\main\\Uploads";
 
     @PostMapping(path="/add",consumes = MediaType.APPLICATION_JSON_VALUE) // Map ONLY POST Requests
     public  ResponseEntity<?> addNewUser (@RequestBody User user) {
@@ -28,7 +30,11 @@ public class UserController {
         // @RequestParam means it is a parameter from the GET or POST request
         JSONObject jsonObject = new JSONObject(user);
         userService.addUser(user);
-
+        System.out.println(user.getusername());
+        File dir = new File(uploads+File.separator+user.getusername());
+        File dirstar = new File(uploads+File.separator+user.getusername()+"_star");
+        boolean successful = dir.mkdir();
+        boolean successfulstar = dirstar.mkdir();
         System.out.println("Saved" + "user"+ user +"json"+ jsonObject);
         return new ResponseEntity(null,HttpStatus.CREATED);
     }
