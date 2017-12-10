@@ -8,6 +8,6 @@ import java.util.List;
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 
 public interface UserRepository extends CrudRepository<User, Long> {
-    List<User> findByEmailAndPassword(String email,String password);
-    List<User> findByName(String name);
+    List<User> findByUsernameAndPassword(String username,String password);
+    List<User> findByUsername(String username);
 }

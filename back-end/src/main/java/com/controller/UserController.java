@@ -26,8 +26,10 @@ public class UserController {
     public  ResponseEntity<?> addNewUser (@RequestBody User user) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
+        JSONObject jsonObject = new JSONObject(user);
         userService.addUser(user);
-        System.out.println("Saved");
+
+        System.out.println("Saved" + "user"+ user +"json"+ jsonObject);
         return new ResponseEntity(null,HttpStatus.CREATED);
     }
 
@@ -48,12 +50,15 @@ public class UserController {
     {
         JSONObject jsonObject = new JSONObject(user);
         System.out.println(user);
-        System.out.println(session);
+      //  System.out.println(session);
         session.setAttribute("name",jsonObject.getString("username"));
+        System.out.println(session.getAttribute("name"));
         List<User> userResult=userService.login(jsonObject.getString("username"),jsonObject.getString("password"));
         System.out.println(userResult.size());
         if(userResult.size()>0){
+            System.out.println("HttpStatus.ok");
             return new ResponseEntity(HttpStatus.OK);
+
         }
         else
         {
@@ -61,6 +66,8 @@ public class UserController {
         }
         //return new ResponseEntity(userService.login(jsonObject.getString("email"),jsonObject.getString("password")),HttpStatus.OK);
     }
+
+
 
     @PostMapping(value = "/logout")
     @ResponseStatus(HttpStatus.NO_CONTENT)

@@ -20,11 +20,15 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public List<User> login(String email,String password){
-        return userRepository.findByEmailAndPassword(email,password);
+    public List<User> login(String username,String password){
+        return userRepository.findByUsernameAndPassword(username,password);
     }
 
-    public List<User> findsomething(String name){
-        return userRepository.findByName(name);
+    public List<User> signup(String firstName,String lastName, String username, String password ){
+        return userRepository.findByUsernameAndPassword(firstName,lastName);
+    }
+
+    public List<User> findsomething(String username){
+        return userRepository.findByUsername(username);
     }
 }
