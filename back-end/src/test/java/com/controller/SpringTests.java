@@ -1,4 +1,4 @@
-package com;
+package com.controller;
 
 import java.util.Arrays;
 
@@ -50,8 +50,8 @@ public class SpringTests {
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/doLogin")
-                .accept(MediaType.APPLICATION_JSON_VALUE).content(user)
-                .contentType(MediaType.APPLICATION_JSON_VALUE);
+                .accept(MediaType.APPLICATION_JSON).content(user)
+                .contentType(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
