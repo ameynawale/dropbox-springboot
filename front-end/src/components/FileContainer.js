@@ -257,7 +257,7 @@ class FileContainer extends Component {
                                       </span>
                                    </span>
                                 </div>
-                                <a href= {'http://localhost:3001/download/'+this.props.username+'/'+tile} download style={{color:'#3d464d'}}>{tile} </a>
+                                <a href= {'http://localhost:3456/downloadLogFile'} download style={{color:'#3d464d'}}>{tile} </a>
                                 <button className="star_toggle star_toggle--unstarred new-folder-button" role="button" aria-pressed="false" aria-label="Star" onClick={() => this.handleStar(tile)}>
                                     <svg width="32" height="32" viewBox="0 0 32 32" class="mc-icon-star">
                                         <title>Artboard</title>
