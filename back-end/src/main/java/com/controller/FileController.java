@@ -9,12 +9,14 @@ import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem;
 //import org.apache.commons
 import org.json.JSONObject;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import com.service.FileService;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 
@@ -22,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -221,6 +224,29 @@ public class FileController {
         return new ResponseEntity(HttpStatus.OK);
         //  um.setUsername(username);
         //  return um;
+    }
+
+    @PostMapping(path="/createFolder",consumes = MediaType.APPLICATION_JSON_VALUE) // Map ONLY POST Requests
+    public  ResponseEntity<?> addNewUser (@RequestBody String user) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        JSONObject jsonObject = new JSONObject(user);
+        //userService.addUser(user);
+        System.out.println(user);
+        //File dir = new File(uploads+File.separator+user.getusername());
+        File folder= new File(uploads+File.separator+jsonObject.getString("username")+File.separator+jsonObject.getString("folder"));
+        boolean successful = folder.mkdir();
+        //boolean successfulstar = dirstar.mkdir();
+        System.out.println("Saved" + "user"+ user +"json"+ jsonObject);
+        return new ResponseEntity(null,HttpStatus.CREATED);
+    }
+
+    @GetMapping(path="/download",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> download(@RequestParam("path") String path, @RequestParam("username") String username,@RequestParam("file") String file) throws IOException {
+        System.out.println("download file "+file+" for user "+username+" in the path of "+path);
+        FileService fileService = new FileService();
+        InputStreamResource file1=fileService.download(username,file,path);
+        return new ResponseEntity(file1,HttpStatus.OK);
     }
 
     @PostMapping(value="/downloadLogFile1", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.MULTIPART_FORM_DATA_VALUE)

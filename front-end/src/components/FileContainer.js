@@ -9,6 +9,7 @@ import Welcome from "./Welcome";
 import SignUp from "./SignUp";
 import * as API from '../api/API';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 //import gridlist from './ImageGridList.css';
 //import {ModalContainer, ModalDialog} from 'react-modal-dialog';
 import '../stylesheets/Welcome.css';
@@ -197,6 +198,8 @@ class FileContainer extends Component {
             <div className="mainContainer mainContainerRoot">
 
 
+
+
                 <GridList cellHeight={35} cols={1}>
                     {this.props.items.map(tile => (
                         <GridListTile key={tile} cols={tile.cols || 1}>
@@ -257,7 +260,9 @@ class FileContainer extends Component {
                                       </span>
                                    </span>
                                 </div>
-                                <a href= {'http://localhost:3456/download/'+this.props.username+'/'+tile} download style={{color:'#3d464d'}}>{tile} </a>
+                                <a href= {'http://localhost:8080/files/download'+this.props.username+'/'+tile} download
+                                   style={{color:'#3d464d'}}
+                                   >{tile} </a>
                                 <button className="star_toggle star_toggle--unstarred new-folder-button" role="button" aria-pressed="false" aria-label="Star" onClick={() => this.handleStar(tile)}>
                                     <svg width="32" height="32" viewBox="0 0 32 32" class="mc-icon-star">
                                         <title>Artboard</title>

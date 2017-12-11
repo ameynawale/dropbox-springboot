@@ -73,6 +73,18 @@ class Welcome extends Component {
             })
     };
 
+    handleCreateFolder = (userdata) => {
+        API.doGetFolders(userdata)
+        // .then((status) => {
+        //    if (status === 201) {
+        // 	API.getFiles()
+            .then((data2) => {
+                this.setState({
+                    folders: data2
+                });
+            })
+    };
+
 
     /*getUserFiles = (userdata) => {
         API.GetFiles(userdata)
@@ -99,11 +111,13 @@ class Welcome extends Component {
             username : '',
             images: [],
             images_star: [],
+            folders: [],
             folderpath : ''
         };
 
         this.handleFileUser = this.handleFileUser.bind(this);
         this.handleFileStar = this.handleFileStar.bind(this);
+        this.handleCreateFolder = this.handleCreateFolder.bind(this);
     }
 
    componentWillMount(){
@@ -113,6 +127,7 @@ class Welcome extends Component {
         });
        this.handleFileUser(this.props);
        this.handleFileStar(this.props);
+       this.handleCreateFolder(this.props);
 
         //document.title = `Welcome, ${this.state.username} !!`;
        //this.getUserFiles(this.state);
@@ -123,6 +138,7 @@ class Welcome extends Component {
         document.title = `Welcome, ${this.state.username} !!`;
         this.handleFileUser(this.props);
         this.handleFileStar(this.props);
+        this.handleCreateFolder(this.props);
        // this.getUserFiles(this.state);
         /*API.getImages()
         .then((data) => {
@@ -150,7 +166,7 @@ class Welcome extends Component {
                 <Starred/>
                 <StarredFiles items={this.state.images_star} route={this.props.route} username={this.props.username}/>
                 <Recent/>
-                <FileContainer items={this.state.images} route={this.props.route} username={this.props.username}/>
+                <FileContainer items={this.state.images} route={this.props.route} username={this.props.username} folders={this.state.folders}/>
 
                 <RightPanel username ={this.state.username} handleFileUpload={this.props.handleFileUpload}/>
 

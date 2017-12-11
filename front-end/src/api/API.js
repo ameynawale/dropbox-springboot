@@ -71,7 +71,7 @@ export const doShare = (payload) =>
         });
 
 export const createFolder = (payload) =>
-    fetch(`${api}/createFolder`, {
+    fetch(`${api}/files/createFolder`, {
         method: 'POST',
         headers: {
             ...headers,
@@ -113,6 +113,20 @@ export const doGetList = (payload) =>
         });
 export const doGetStar = (payload) =>
     fetch(`${api}/files/doGetStar`,{
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .catch(error => {
+            console.log("This is error.");
+            return error;
+        });
+
+export const doGetFolders = (payload) =>
+    fetch(`${api}/files/getfolders`,{
         method: 'POST',
         headers: {
             ...headers,

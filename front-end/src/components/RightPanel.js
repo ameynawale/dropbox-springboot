@@ -74,6 +74,7 @@ class RightPanel extends React.Component{
             emails: '',
             folder: '',
             groupname: ''
+            //username: this.props.username
         };
 
         this.openModal = this.openModal.bind(this);
