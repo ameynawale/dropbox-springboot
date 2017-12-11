@@ -15,6 +15,7 @@ import Starred from './Starred';
 import Recent from './Recent';
 import '../stylesheets/Welcome.css';
 import StarredFiles from './StarredFiles';
+import FolderContainer from "./FolderContainer";
 
 
 const styles = ({
@@ -166,8 +167,8 @@ class Welcome extends Component {
                 <Starred/>
                 <StarredFiles items={this.state.images_star} route={this.props.route} username={this.props.username}/>
                 <Recent/>
-                <FileContainer items={this.state.images} route={this.props.route} username={this.props.username} folders={this.state.folders}/>
-
+                <FolderContainer items={this.state.folders} route={this.props.route} username={this.props.username}/>
+                <FileContainer items={this.state.images} route={this.props.route} username={this.props.username}/>
                 <RightPanel username ={this.state.username} handleFileUpload={this.props.handleFileUpload}/>
 
 

@@ -99,9 +99,9 @@ public class FileController {
     public @ResponseBody List<String> getAllfolders(@RequestBody String uname) {
         // This returns a JSON with the users
         JSONObject jsonObject = new JSONObject(uname);
-        System.out.println(jsonObject.getString("uname"));
+        System.out.println(jsonObject.getString("username"));
         List<String> results = new ArrayList<String>();
-        File[] files = new File(uploads+"\\"+jsonObject.getString("uname")).listFiles();
+        File[] files = new File(uploads+"\\"+jsonObject.getString("username")).listFiles();
 //If this pathname does not denote a directory, then listFiles() returns null.
 
         for (File file : files) {

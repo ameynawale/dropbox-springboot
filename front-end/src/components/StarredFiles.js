@@ -226,6 +226,30 @@ class StarredFiles extends Component {
 
                             <div className="itemRow">
 
+                                <div className="recents-item__icon">
+                                    <span className="file-icon file-icon--sprite file-icon--spectrum">
+                                        <span className="file-icon__img">
+                                            <svg width="40" height="40" viewBox="0 0 40 40" className="mc-icon-template-content">
+                                                <title>
+                                                    content-txt-small
+                                                </title>
+                                                <defs>
+                                                    <rect id="mc-content-txt-small-b" x="8" y="5" width="24" height="30" rx="1.5">
+
+                                                    </rect>
+                                                    <filter x="-2.1%" y="-1.7%" width="104.2%" height="106.7%" filterUnits="objectBoundingBox" id="mc-content-txt-small-a">
+                                                        <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                                                        <feColorMatrix values="0 0 0 0 0.858859196 0 0 0 0 0.871765907 0 0 0 0 0.884672619 0 0 0 1 0" in="shadowOffsetOuter1"></feColorMatrix></filter>
+                                                </defs>
+                                                <g fill="none" fillRule="evenodd">
+                                                    <g><use fillRule="#000" filter="url(#mc-content-txt-small-a)" xlinkHref="#mc-content-txt-small-b"></use>
+                                                        <use fill="#F7F9FA" xlinkHref="#mc-content-txt-small-b"></use>
+                                                    </g><path d="M13 15.505a.5.5 0 0 1 .498-.505h13.004c.275 0 .498.214.498.505v.99a.5.5 0 0 1-.498.505H13.498a.494.494 0 0 1-.498-.505v-.99zm0 4a.5.5 0 0 1 .498-.505h13.004c.275 0 .498.214.498.505v.99a.5.5 0 0 1-.498.505H13.498a.494.494 0 0 1-.498-.505v-.99zm0 4c0-.279.233-.505.503-.505h5.994c.278 0 .503.214.503.505v.99a.509.509 0 0 1-.503.505h-5.994a.497.497 0 0 1-.503-.505v-.99z" fill="#637282">
+
+                                                </path>
+                                                </g>
+                                            </svg></span></span>
+                                </div>
 
                                 <a href= {'http://localhost:3001/files/download/'+this.props.username+'/'+tile} download style={{color:'#3d464d'}}>{tile} </a>
 

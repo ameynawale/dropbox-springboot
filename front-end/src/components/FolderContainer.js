@@ -65,7 +65,7 @@ const customStyles = {
     }
 };
 
-class FileContainer extends Component {
+class FolderContainer extends Component {
 
     constructor() {
         super();
@@ -125,12 +125,12 @@ class FileContainer extends Component {
     };
 
 
-        handleStar = (file2) => {
+    handleStar = (file2) => {
 
-            var file = new FormData();
-            file.append('item', file2);
-            file.append('username',this.state.username);
-            API.doStar({username: this.props.username, item: file2 })
+        var file = new FormData();
+        file.append('item', file2);
+        file.append('username',this.state.username);
+        API.doStar({username: this.props.username, item: file2 })
             .then((status) => {
                 if (status === 201) {
                     this.setState({
@@ -139,7 +139,7 @@ class FileContainer extends Component {
                         username: file2.username,
                         //    activeItemName: file.activeItemName
                     });
-                //    this.props.history.push("/");
+                    //    this.props.history.push("/");
                 } else if (status === 401) {
                     this.setState({
                         isLoggedIn: false,
@@ -149,7 +149,7 @@ class FileContainer extends Component {
             });
 
 
-       };
+    };
 
 
     /*static propTypes = {
@@ -247,33 +247,22 @@ class FileContainer extends Component {
 
                             <div className="itemRow">
 
-                                <div className="recents-item__icon">
-                                    <span className="file-icon file-icon--sprite file-icon--spectrum">
-                                        <span className="file-icon__img">
-                                            <svg width="40" height="40" viewBox="0 0 40 40" className="mc-icon-template-content">
-                                                <title>
-                                                    content-txt-small
-                                                </title>
-                                                <defs>
-                                                    <rect id="mc-content-txt-small-b" x="8" y="5" width="24" height="30" rx="1.5">
-
-                                                    </rect>
-                                                    <filter x="-2.1%" y="-1.7%" width="104.2%" height="106.7%" filterUnits="objectBoundingBox" id="mc-content-txt-small-a">
-                                                        <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-                                                        <feColorMatrix values="0 0 0 0 0.858859196 0 0 0 0 0.871765907 0 0 0 0 0.884672619 0 0 0 1 0" in="shadowOffsetOuter1"></feColorMatrix></filter>
-                                                </defs>
-                                                <g fill="none" fillRule="evenodd">
-                                                    <g><use fillRule="#000" filter="url(#mc-content-txt-small-a)" xlinkHref="#mc-content-txt-small-b"></use>
-                                                        <use fill="#F7F9FA" xlinkHref="#mc-content-txt-small-b"></use>
-                                                    </g><path d="M13 15.505a.5.5 0 0 1 .498-.505h13.004c.275 0 .498.214.498.505v.99a.5.5 0 0 1-.498.505H13.498a.494.494 0 0 1-.498-.505v-.99zm0 4a.5.5 0 0 1 .498-.505h13.004c.275 0 .498.214.498.505v.99a.5.5 0 0 1-.498.505H13.498a.494.494 0 0 1-.498-.505v-.99zm0 4c0-.279.233-.505.503-.505h5.994c.278 0 .503.214.503.505v.99a.509.509 0 0 1-.503.505h-5.994a.497.497 0 0 1-.503-.505v-.99z" fill="#637282">
-
-                                                </path>
-                                                </g>
-                                            </svg></span></span>
+                                <div className="recents-item__icon folder-icon">
+                                   <span className="file-icon file-icon--sprite file-icon--spectrum">
+                                      <span className="file-icon__img">
+                                         <svg width="40" height="40" viewBox="0 0 40 40" className="mc-icon-template-content">
+                                            <title>content-folder-small</title>
+                                            <g fill="none" fillRule="evenodd">
+                                               <path d="M18.422 11h15.07c.84 0 1.508.669 1.508 1.493v18.014c0 .818-.675 1.493-1.508 1.493H6.508C5.668 32 5 31.331 5 30.507V9.493C5 8.663 5.671 8 6.5 8h7.805c.564 0 1.229.387 1.502.865l1.015 1.777s.4.358 1.6.358z" fill="#71B9F4"></path>
+                                               <path d="M18.422 10h15.07c.84 0 1.508.669 1.508 1.493v18.014c0 .818-.675 1.493-1.508 1.493H6.508C5.668 31 5 30.331 5 29.507V8.493C5 7.663 5.671 7 6.5 7h7.805c.564 0 1.229.387 1.502.865l1.015 1.777s.4.358 1.6.358z" fill="#92CEFF"></path>
+                                            </g>
+                                         </svg>
+                                      </span>
+                                   </span>
                                 </div>
                                 <a href= {'http://localhost:8080/files/download'+this.props.username+'/'+tile} download
                                    style={{color:'#3d464d'}}
-                                   >{tile} </a>
+                                >{tile} </a>
                                 <button className="star_toggle star_toggle--unstarred new-folder-button" role="button" aria-pressed="false" aria-label="Star" onClick={() => this.handleStar(tile)}>
                                     <svg width="32" height="32" viewBox="0 0 32 32" class="mc-icon-star">
                                         <title>Artboard</title>
@@ -306,4 +295,4 @@ class FileContainer extends Component {
 }
 
 
-export default FileContainer;
+export default FolderContainer;
